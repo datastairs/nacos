@@ -15,8 +15,8 @@
   ~ limitations under the License.
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.alibaba.nacos</groupId>
@@ -35,7 +35,7 @@
         <!-- 编译时的编码 -->
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     </properties>
-    
+
     <dependencies>
         <dependency>
             <groupId>com.h2database</groupId>
@@ -54,12 +54,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>nacos-naming</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>nacos-istio</artifactId>
         </dependency>
-        
+
         <!-- log -->
         <!-- log4j通过slf4j来代理 -->
         <dependency>
@@ -87,18 +87,31 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
-    
+
     <build>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
+                <filtering>true</filtering>
                 <excludes>
                     <exclude>static/console-ui/.vscode/**</exclude>
+                    <exclude>application-loc.properties</exclude>
+                    <exclude>application-dev.properties</exclude>
+                    <exclude>application-pre.properties</exclude>
+                    <exclude>application-pro.properties</exclude>
                 </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>application-${spring.profiles.active}.properties</include>
+                    <include>application.properties</include>
+                </includes>
             </resource>
         </resources>
     </build>
-    
+
     <reporting>
         <plugins>
             <plugin>
@@ -107,7 +120,7 @@
             </plugin>
         </plugins>
     </reporting>
-    
+
     <profiles>
         <profile>
             <id>release-nacos</id>
