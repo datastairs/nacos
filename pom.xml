@@ -501,6 +501,30 @@
 
     <profiles>
         <profile>
+            <id>loc</id>
+            <properties>
+                <spring.profiles.active>loc</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <spring.profiles.active>dev</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>pre</id>
+            <properties>
+                <spring.profiles.active>pre</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>pro</id>
+            <properties>
+                <spring.profiles.active>pro</spring.profiles.active>
+            </properties>
+        </profile>
+        <profile>
             <id>jdk8</id>
             <activation>
                 <jdk>[1.8,)</jdk>
