@@ -16,6 +16,7 @@
 
 package com.alibaba.nacos;
 
+import com.alibaba.nacos.console.config.ConfigConstants;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -30,8 +31,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @ServletComponentScan
 @EnableScheduling
 public class Nacos {
-    
+
     public static void main(String[] args) {
+        System.setProperty(ConfigConstants.STANDALONE_MODE, "true");
+        System.setProperty(ConfigConstants.AUTH_ENABLED, "false");
+        System.setProperty(ConfigConstants.LOG_BASEDIR, "logs");
         SpringApplication.run(Nacos.class, args);
     }
 }

@@ -175,6 +175,12 @@
         <querydsl.version>4.2.1</querydsl.version>
         <hikariCP.version>3.4.1</hikariCP.version>
         <lombok.version>1.18.12</lombok.version>
+        <docker.plugin.version>0.32.0</docker.plugin.version>
+        <docker.host>http://192.168.99.4:2375</docker.host>
+        <docker.registry>192.168.99.4</docker.registry>
+        <docker.namespace>datastairs</docker.namespace>
+        <docker.username>username</docker.username>
+        <docker.password>password</docker.password>
     </properties>
     <!-- == -->
     <!-- =========================================================Build plugins================================================ -->
@@ -462,6 +468,33 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <configuration>
+                    <!-- Docker Remote Api-->
+                    <dockerHost>${docker.host}</dockerHost>
+                    <!-- Docker 镜像私服-->
+                    <registry>${docker.registry}</registry>
+                    <!-- 认证信息-->
+                    <authConfig>
+                        <push>
+                            <username>${docker.username}</username>
+                            <password>${docker.password}</password>
+                        </push>
+                    </authConfig>
+                    <images>
+                        <image>
+                            <!-- 镜像名称： 192.168.99.4/library/nacos-server:1.4.2-->
+                            <name>${docker.registry}/${docker.namespace}/${artifactId}:${project.version}</name>
+                            <build>
+                                <dockerFile>${project.basedir}/Dockerfile</dockerFile>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
             </plugin>
         </plugins>
     </build>
