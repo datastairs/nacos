@@ -290,7 +290,8 @@
                         <exclude>**/istio/model/*.java</exclude>
                         <exclude>**/com/alibaba/nacos/config/server/modules/entity/*.java</exclude>
                         <exclude>**/com/alibaba/nacos/config/server/modules/mapstruct/*.java</exclude>
-                        <exclude>**/com/alibaba/nacos/config/server/configuration/datasource/DynamicDataSource.java</exclude>
+                        <exclude>**/com/alibaba/nacos/config/server/configuration/datasource/DynamicDataSource.java
+                        </exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -318,7 +319,9 @@
                     <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
-                    <excludes>**/istio/model/**,**/consistency/entity/**,**/nacos/test/**,**/com/alibaba/nacos/config/server/modules/**</excludes>
+                    <excludes>
+                        **/istio/model/**,**/consistency/entity/**,**/nacos/test/**,**/com/alibaba/nacos/config/server/modules/**
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
@@ -371,6 +374,17 @@
                 <configuration>
                     <!-- We are not suppose to setup the customer resources here -->
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <!--防止对二进制文件进行破坏-->
+                    <nonFilteredFileExtensions>
+                        <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>xls</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>zip</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>eot</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>svg</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>ttf</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>woff</nonFilteredFileExtension>
+                        <nonFilteredFileExtension>woff2</nonFilteredFileExtension>
+                    </nonFilteredFileExtensions>
                 </configuration>
             </plugin>
             <plugin>
